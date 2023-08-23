@@ -1,0 +1,1 @@
+db.reactions2.aggregate([{$sample:{size:1}}])
