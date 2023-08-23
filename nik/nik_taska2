@@ -1,0 +1,43 @@
+Table questions {
+ id integer [primary key]
+   question varchar
+   test_id integer
+   topic_id varchar
+}
+
+Table topics {
+ id integer [primary key]
+   topic varchar
+   test_id integer
+}
+
+Table responses {
+ id integer [primary key]
+   test_id integer
+   responce varchar
+   user_id integer
+}
+
+Table users {
+  id integer [primary key]
+  username varchar
+}
+
+Table tests {
+  id integer [primary key]
+  user_id integer
+  title varchar
+  body text [note: 'Content of the post']
+  status varchar
+  created_at timestamp
+}
+
+Ref: tests.user_id <> users.id // many-to-one
+
+Ref: questions.test_id > tests.id
+
+Ref: responses.user_id > users.id
+
+Ref: responses.test_id <> tests.id
+
+Ref: questions.topic_id > topics.id
